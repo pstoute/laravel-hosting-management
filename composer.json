@@ -1,0 +1,68 @@
+{
+    "name": "pstoute/laravel-hosting-management",
+    "description": "A unified hosting provider abstraction layer for Laravel, providing a single API to manage servers, sites, databases, SSL certificates, and deployments across multiple hosting platforms.",
+    "keywords": [
+        "laravel",
+        "hosting",
+        "forge",
+        "gridpane",
+        "cloudways",
+        "kinsta",
+        "wpengine",
+        "ploi",
+        "runcloud",
+        "spinupwp",
+        "cpanel",
+        "server-management",
+        "devops"
+    ],
+    "homepage": "https://github.com/pstoute/laravel-hosting-management",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Stoute",
+            "email": "paul@stoute.io"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/contracts": "^10.0|^11.0|^12.0",
+        "illuminate/http": "^10.0|^11.0|^12.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.0|^11.0",
+        "mockery/mockery": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pstoute\\LaravelHosting\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pstoute\\LaravelHosting\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pstoute\\LaravelHosting\\HostingServiceProvider"
+            ],
+            "aliases": {
+                "Hosting": "Pstoute\\LaravelHosting\\Facades\\Hosting"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
