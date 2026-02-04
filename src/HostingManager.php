@@ -20,12 +20,8 @@ use Pstoute\LaravelHosting\Providers\WPEngineProvider;
 
 class HostingManager extends Manager
 {
-    /**
-     * Custom provider creators.
-     *
-     * @var array<string, Closure>
-     */
-    protected array $customCreators = [];
+    // Note: $customCreators is inherited from Illuminate\Support\Manager
+    // Do not redeclare it here to avoid PHP type conflict
 
     /**
      * Get the default driver name.
@@ -156,11 +152,11 @@ class HostingManager extends Manager
     /**
      * Register a custom provider creator.
      *
-     * @param string $driver
-     * @param Closure $callback
+     * @param  string  $driver
+     * @param  \Closure  $callback
      * @return $this
      */
-    public function extend($driver, Closure $callback): static
+    public function extend($driver, Closure $callback)
     {
         $this->customCreators[$driver] = $callback;
 
@@ -170,12 +166,12 @@ class HostingManager extends Manager
     /**
      * Create a new driver instance.
      *
-     * @param string $driver
+     * @param  string  $driver
      * @return HostingProviderInterface
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
-    protected function createDriver($driver): HostingProviderInterface
+    protected function createDriver($driver)
     {
         // Check for custom creators first
         if (isset($this->customCreators[$driver])) {
@@ -194,8 +190,11 @@ class HostingManager extends Manager
 
     /**
      * Call a custom driver creator.
+     *
+     * @param  string  $driver
+     * @return mixed
      */
-    protected function callCustomCreator(string $driver): HostingProviderInterface
+    protected function callCustomCreator($driver)
     {
         $config = $this->getProviderConfig($driver);
 
